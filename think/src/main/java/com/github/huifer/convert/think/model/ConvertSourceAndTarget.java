@@ -2,7 +2,7 @@ package com.github.huifer.convert.think.model;
 
 import java.util.Objects;
 
-import com.github.huifer.convert.think.api.Convert;
+import com.github.huifer.convert.think.api.CommonConvert;
 
 /**
  *
@@ -12,12 +12,12 @@ import com.github.huifer.convert.think.api.Convert;
 public class ConvertSourceAndTarget {
 
     /**
-     * {@link Convert} 中的 S
+     * {@link CommonConvert} 中的 S
      */
     private Class<?> sourceTypeClass;
 
     /**
-     * {@link Convert} 中的 T
+     * {@link CommonConvert} 中的 T
      */
     private Class<?> targetTypeClass;
 

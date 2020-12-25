@@ -8,13 +8,13 @@ package com.github.huifer.convert.think.api;
 public interface ConvertRegister {
     /**
      * 注册 convert 接口
-     * @param convert convert 接口
+     * @param commonConvert convert 接口
      */
-    void register(Convert<?, ?> convert);
+    void register(CommonConvert<?, ?> commonConvert);
 
     /**
      * 注册 convert 接口
      * @param convert convert 类
      */
-    void register(Class<? extends Convert> convert) throws IllegalAccessException, InstantiationException;
+    void register(Class<? extends CommonConvert> convert) throws IllegalAccessException, InstantiationException;
 }

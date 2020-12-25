@@ -1,6 +1,6 @@
 package com.github.huifer.convert.think.impl;
 
-import com.github.huifer.convert.think.api.Convert;
+import com.github.huifer.convert.think.api.CommonConvert;
 import com.github.huifer.convert.think.model.ConvertSourceAndTarget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +35,10 @@ public class ConvertFacade {
 
         ConvertSourceAndTarget  convertSourceAndTarget = new ConvertSourceAndTarget(source.getClass(), target);
 
-        Convert convert = DefaultConvertRegister.getConvertMap(convertSourceAndTarget);
-        if (convert != null) {
+        CommonConvert commonConvert = DefaultConvertRegister.getConvertMap(convertSourceAndTarget);
+        if (commonConvert != null) {
 
-            return (T) convert.convert(source);
+            return (T) commonConvert.convert(source);
         }
         return null;
     }

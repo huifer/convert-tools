@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.huifer</groupId>
-    <artifactId>convert</artifactId>
+    <artifactId>common-convert</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>mapstruct-ex</module>
         <module>think</module>
+        <module>for-spring</module>
     </modules>
 
     <properties>
@@ -18,8 +18,6 @@
         <maven.compiler.target>8</maven.compiler.target>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <logback-classic.version>1.1.11</logback-classic.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
     </properties>
 
     <dependencies>
@@ -39,16 +37,6 @@
             <artifactId>junit</artifactId>
             <version>4.13</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${org.mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${org.mapstruct.version}</version>
         </dependency>
     </dependencies>
     <build>

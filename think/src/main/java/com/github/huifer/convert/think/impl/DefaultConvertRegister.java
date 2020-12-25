@@ -5,7 +5,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.github.huifer.convert.think.api.Convert;
+import com.github.huifer.convert.think.api.CommonConvert;
 import com.github.huifer.convert.think.api.ConvertRegister;
 import com.github.huifer.convert.think.model.ConvertSourceAndTarget;
 import org.slf4j.Logger;
@@ -21,11 +21,11 @@ public class DefaultConvertRegister implements ConvertRegister {
 
     private static final Logger log = LoggerFactory.getLogger(DefaultConvertRegister.class);
 
-    static Map<ConvertSourceAndTarget, Convert> convertMap
+    static Map<ConvertSourceAndTarget, CommonConvert> convertMap
             = new ConcurrentHashMap<>(256);
 
 
-    public static Convert getConvertMap(ConvertSourceAndTarget param) {
+    public static CommonConvert getConvertMap(ConvertSourceAndTarget param) {
         if (log.isInfoEnabled()) {
             log.info("getConvertMap,param = {}", param);
         }
@@ -39,26 +39,26 @@ public class DefaultConvertRegister implements ConvertRegister {
     }
 
     @Override
-    public void register(Convert convert) {
+    public void register(CommonConvert commonConvert) {
 
-        if (convert == null) {
+        if (commonConvert == null) {
             log.warn("当前传入的convert对象为空");
             return;
         }
 
 
-        Class<? extends Convert> convertClass = convert.getClass();
+        Class<? extends CommonConvert> convertClass = commonConvert.getClass();
 
-        handler(convert, convertClass);
+        handler(commonConvert, convertClass);
 
     }
 
-    private void handler(Convert convert, Class<? extends Convert> convertClass) {
+    private void handler(CommonConvert commonConvert, Class<? extends CommonConvert> convertClass) {
         Type[] genericInterfaces = convertClass.getGenericInterfaces();
 
         for (Type genericInterface : genericInterfaces) {
             ParameterizedType pType = (ParameterizedType) genericInterface;
-            boolean equals = pType.getRawType().equals(Convert.class);
+            boolean equals = pType.getRawType().equals(CommonConvert.class);
             if (equals) {
                 Type[] actualTypeArguments = pType.getActualTypeArguments();
 
@@ -75,7 +75,7 @@ public class DefaultConvertRegister implements ConvertRegister {
                                 new ConvertSourceAndTarget(sourceClass,
                                         targetClass);
                         // 如果类型相同 覆盖
-                        convertMap.put(convertSourceAndTarget, convert);
+                        convertMap.put(convertSourceAndTarget, commonConvert);
                     }
                     catch (Exception e) {
                         log.error("a1=[{}]", a1);
@@ -89,13 +89,13 @@ public class DefaultConvertRegister implements ConvertRegister {
 
 
     @Override
-    public void register(Class<? extends Convert> convert) throws IllegalAccessException, InstantiationException {
+    public void register(Class<? extends CommonConvert> convert) throws IllegalAccessException, InstantiationException {
         if (convert == null) {
             log.warn("当前传入的convert对象为空");
             return;
         }
 
-        Convert cv = convert.newInstance();
+        CommonConvert cv = convert.newInstance();
 
         if (cv != null) {
             handler(cv, convert);

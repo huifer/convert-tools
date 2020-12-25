@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
 public class Demo {
 
 
-    public static class AConvert implements Convert<Integer, String> {
+    public static class ACommonConvert implements CommonConvert<Integer, String> {
         @Override
         public String convert(Integer source) {
             return String.valueOf(source);
@@ -19,13 +19,13 @@ public class Demo {
     }
 
     public static void main(String[] args) {
-        Class<AConvert> aConvertClass = AConvert.class;
+        Class<ACommonConvert> aConvertClass = ACommonConvert.class;
 
         Type[] genericInterfaces = aConvertClass.getGenericInterfaces();
 
         for (Type genericInterface : genericInterfaces) {
             ParameterizedType pType = (ParameterizedType) genericInterface;
-            boolean equals = pType.getRawType().equals(Convert.class);
+            boolean equals = pType.getRawType().equals(CommonConvert.class);
             if (equals) {
                 Type[] actualTypeArguments = pType.getActualTypeArguments();
 

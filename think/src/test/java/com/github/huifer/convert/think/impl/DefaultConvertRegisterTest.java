@@ -1,6 +1,7 @@
 package com.github.huifer.convert.think.impl;
 
 import com.github.huifer.convert.think.api.ConvertRegister;
+import com.github.huifer.convert.think.start.CommonConvertRunner;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,14 +16,14 @@ public class DefaultConvertRegisterTest {
     @Test
     public void register() {
 
-        C1 c1 = new C1();
-        convertRegister.register(c1);
+        ConvertOne convertOne = new ConvertOne();
+        convertRegister.register(convertOne);
 
 
-        S s = new S();
-        s.setName("张三");
+        TestSource testSource = new TestSource();
+        testSource.setName("张三");
 
-        T convert = ConvertFacade.convert(s, T.class);
+        TestTarget convert = ConvertFacade.convert(testSource, TestTarget.class);
         Assert.assertEquals(convert.getUsername(), "张三");
 
     }
@@ -31,17 +32,27 @@ public class DefaultConvertRegisterTest {
     @Test
     public void register2() throws InstantiationException, IllegalAccessException {
 
-        convertRegister.register(C1.class);
+        convertRegister.register(ConvertOne.class);
 
 
-        S s = new S();
-        s.setName("张三");
+        TestSource testSource = new TestSource();
+        testSource.setName("张三");
 
-        T convert = ConvertFacade.convert(s, T.class);
+        TestTarget convert = ConvertFacade.convert(testSource, TestTarget.class);
         Assert.assertEquals(convert.getUsername(), "张三");
 
     }
 
 
+    @Test
+    public void register3() {
+        CommonConvertRunner.start(new String[] {"com.github.huifer.convert.think"});
+
+        TestSource testSource = new TestSource();
+        testSource.setName("张三");
+
+        TestTarget convert = ConvertFacade.convert(testSource, TestTarget.class);
+        Assert.assertEquals(convert.getUsername(), "张三");
+    }
 
 }

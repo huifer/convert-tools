@@ -1,18 +1,32 @@
-# 对象转换
+# 对象转换工具
 
-- 在使用 mapstruct 的过程中经常会有N多个类需要去记忆或者去查询到具体的转换方法在那个类然后在使用下面这样的代码来进行转换调用
+- 本项目是为了减少在Java项目中搜索对象转换的一个工具包. 
+
+## 功能
+- 提供统一的对象转换入口进行转换
+
+## 使用
+
+### SpringBoot
+- 在SpringBoot项目中的使用过程如下
+
+1. 编写 convert 相关实现, 继承 `com.github.huifer.convert.think.api.CommonConvert` 接口进行开发
 
 
-```java
-UserEntity userEntity = new UserEntity();
+1. 启动类添加注解`@EnableCommonConvert(scanPackages = {"com.github.huifer.comvert.example.convet"})`
+    - `scanPackages` 代表了 `CommonConvert` 接口实现的存放位置
+    
+1. 使用 `com.github.huifer.convert.think.impl.ConvertFacade.convert`方法获取转换结果
 
-userEntity.setName("a");
 
-UserTarget userTarget = UserConvert.INSTANCE.toTarget(userEntity);
-```
+完整代码请查看[SpringBootExample](/example/spring-boot-example)
 
-- 本项目是希望可以通过一个统一的方法然后来得到转换结果. 代码如下
 
-```java
-    UserTarget convert = MapstructFacade.convert(userEntity, UserTarget.class);
-```
+
+### Java
+1. 编写 convert 相关实现, 继承 `com.github.huifer.convert.think.api.CommonConvert` 接口进行开发
+1. 在项目中`start`方法或者`main`方法中调用 `CommonConvertRunner.start(new String[] {"com.github.huifer.convert.think"})`
+1. 使用 `com.github.huifer.convert.think.impl.ConvertFacade.convert`方法获取转换结果
+
+
+完整代码请查看[JavaExample](/think/src/test)
