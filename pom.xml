@@ -8,10 +8,28 @@
     <artifactId>common-convert</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>common-convert</name>
     <modules>
         <module>think</module>
         <module>for-spring</module>
     </modules>
+
+    <description>java object convert tool</description>
+    <url>https://github.com/huifer/convert-tools</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>HuiFer</name>
+            <email>huifer97@163.com</email>
+            <organization>GitHub</organization>
+        </developer>
+    </developers>
+
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -20,25 +38,28 @@
         <logback-classic.version>1.1.11</logback-classic.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-classic.version}</version>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback-classic.version}</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
@@ -128,4 +149,21 @@
 
     </profiles>
 
+
+    <scm>
+        <connection>scm:git:git@github.com:huifer/convert-tools.git</connection>
+        <developerConnection>scm:git:git@github.com:huifer/convert-tools.git</developerConnection>
+        <url>scm:git:git@github.com:huifer/convert-tools.git</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
