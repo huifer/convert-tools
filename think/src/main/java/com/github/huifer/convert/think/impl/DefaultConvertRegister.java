@@ -39,7 +39,7 @@ public class DefaultConvertRegister implements ConvertRegister {
     }
 
     @Override
-    public void register(CommonConvert commonConvert) {
+    public void register(CommonConvert commonConvert ) {
 
         if (commonConvert == null) {
             log.warn("当前传入的convert对象为空");

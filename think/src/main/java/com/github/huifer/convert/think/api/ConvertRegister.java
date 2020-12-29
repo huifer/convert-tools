@@ -12,6 +12,7 @@ public interface ConvertRegister {
      */
     void register(CommonConvert<?, ?> commonConvert);
 
+
     /**
      * 注册 convert 接口
      * @param convert convert 类

@@ -6,6 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.github.huifer.convert.forspring.beans.Beans;
 import com.github.huifer.convert.forspring.importselector.CommonConvertImportSelector;
 
 import org.springframework.context.annotation.Import;
@@ -18,7 +19,7 @@ import org.springframework.context.annotation.Import;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import(CommonConvertImportSelector.class)
+@Import({Beans.class, CommonConvertImportSelector.class})
 public @interface EnableCommonConvert {
     String[] scanPackages() default {};
 
